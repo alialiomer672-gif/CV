@@ -322,7 +322,7 @@ function renderPreview() {
   const languages = sec('اللغات', langHTML ? `<div class="cv-langs">${langHTML}</div>` : '');
 
   const footer = state.settings.footer
-    ? `<div class="cv-foot"><span>سيرة ذاتية احترافية · ${esc(p.title || '')}</span><span>تم الإنشاء بواسط م/ علي ابوكيع </span></div>` : '';
+    ? `<div class="cv-foot"><span>سيرة ذاتية احترافية · ${esc(p.title || '')}</span><span>تم الإنشاء بواسط م/ علي باوكيع </span></div>` : '';
 
   $('#paper').innerHTML = `<div class="paper-inner">${head}${summary}${experience}${education}${skills}${projects}${certs}${languages}${footer}</div>`;
 
