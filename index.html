@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>سِيرَتي — منشئ السيرة الذاتية الاحترافية المتوافق مع ATS</title>
+<meta name="description" content="ابنِ سيرة ذاتية فخمة واحترافية متوافقة مع أنظمة تتبع المتقدمين ATS، مع مساعد ذكي ومعاينة حيّة وتصدير PDF.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="styles.css">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='22' fill='%230B1120'/><text x='50' y='68' font-size='52' font-family='serif' fill='%23E4C27E' text-anchor='middle'>س</text></svg>">
+<script src="https://sites.super.myninja.ai/_assets/ninja-daytona-script.js"></script>
+</head>
+<body>
+
+<!-- ============ TOP BAR ============ -->
+<header class="topbar">
+  <div class="brand">
+    <div class="brand-mark">س</div>
+    <div class="brand-text">
+      <h1>سِيرَتي <span style="color:var(--gold);font-weight:400;font-size:12px">| SIRATI</span></h1>
+      <p>منشئ السيرة الذاتية الفخم · متوافق مع ATS</p>
+    </div>
+  </div>
+  <div class="top-actions">
+    <button class="btn btn-ghost" id="btnSample" title="تعبئة نموذج جاهز">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 3v18M3 12h18" stroke-linecap="round"/></svg>
+      <span>نموذج جاهز</span>
+    </button>
+    <button class="btn btn-ghost" id="btnImport" title="استيراد ملف JSON">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 3v12m0 0l-4-4m4 4l4-4M4 17v2a2 2 0 002 2h12a2 2 0 002-2v-2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      <span>استيراد</span>
+    </button>
+    <button class="btn btn-ghost" id="btnExport" title="تصدير البيانات JSON">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 15V3m0 0L8 7m4-4l4 4M4 17v2a2 2 0 002 2h12a2 2 0 002-2v-2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      <span>تصدير</span>
+    </button>
+    <button class="btn btn-gold" id="btnPrint">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M6 9V3h12v6M6 18H4a2 2 0 01-2-2v-4a2 2 0 012-2h16a2 2 0 012 2v4a2 2 0 01-2 2h-2M6 14h12v7H6z" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      <span>تحميل PDF</span>
+    </button>
+  </div>
+</header>
+
+<!-- ============ APP ============ -->
+<div class="app">
+
+  <!-- ---------- EDITOR ---------- -->
+  <section class="editor-col">
+    <div class="mobile-switch">
+      <button data-view="editor" class="active">المحرر</button>
+      <button data-view="preview">المعاينة</button>
+    </div>
+
+    <nav class="tabs" id="tabs">
+      <button class="tab active" data-tab="personal"><span class="dot"></span>بياناتي</button>
+      <button class="tab" data-tab="experience"><span class="dot"></span>الخبرة</button>
+      <button class="tab" data-tab="education"><span class="dot"></span>التعليم</button>
+      <button class="tab" data-tab="skills"><span class="dot"></span>المهارات</button>
+      <button class="tab" data-tab="extras"><span class="dot"></span>إضافات</button>
+      <button class="tab" data-tab="ats"><span class="dot"></span>فحص ATS</button>
+    </nav>
+
+    <div class="editor-scroll">
+
+      <!-- PERSONAL -->
+      <div class="panel active" data-panel="personal">
+        <div class="section-head">
+          <div>
+            <h2>البيانات الشخصية</h2>
+            <p>المعلومات التي تظهر في أعلى السيرة. استخدم بريداً وهاتفاً فعّالين — أنظمة ATS تقرأها آلياً.</p>
+          </div>
+        </div>
+
+        <div class="field">
+          <label>الاسم الكامل <span class="req">*</span></label>
+          <input type="text" data-bind="personal.name" placeholder="مثال: علي عمر علي باوكيع">
+        </div>
+
+        <div class="field">
+          <label>المسمى الوظيفي المستهدف <span class="req">*</span></label>
+          <input type="text" data-bind="personal.title" placeholder="مثال: مهندس برمجيات  — تطوير الويب">
+          <div class="hint">طابق المسمى مع الوظيفة التي تتقدم لها؛ هذا أول ما يبحث عنه الـ ATS.</div>
+        </div>
+
+        <div class="grid-2">
+          <div class="field">
+            <label>البريد الإلكتروني <span class="req">*</span></label>
+            <input type="email" data-bind="personal.email" placeholder="name@email.com" dir="ltr" style="text-align:left">
+          </div>
+          <div class="field">
+            <label>رقم الجوال <span class="req">*</span></label>
+            <input type="tel" data-bind="personal.phone" placeholder="+966 5X XXX XXXX" dir="ltr" style="text-align:left">
+          </div>
+        </div>
+
+        <div class="grid-2">
+          <div class="field">
+            <label>المدينة، الدولة</label>
+            <input type="text" data-bind="personal.city" placeholder="الرياض، السعودية">
+          </div>
+          <div class="field">
+            <label>سنوات الخبرة</label>
+            <select data-bind="personal.years">
+              <option value="">اختر…</option>
+              <option value="0">حديث التخرج</option>
+              <option value="1">سنة واحدة</option>
+              <option value="2">سنتان</option>
+              <option value="3">3 سنوات</option>
+              <option value="4">4 سنوات</option>
+              <option value="5">5 سنوات</option>
+              <option value="7">7 سنوات</option>
+              <option value="10">10 سنوات</option>
+              <option value="15">أكثر من 15 سنة</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="grid-2">
+          <div class="field">
+            <label>LinkedIn</label>
+            <input type="text" data-bind="personal.linkedin" placeholder="linkedin.com/in/username" dir="ltr" style="text-align:left">
+          </div>
+          <div class="field">
+            <label>الموقع / Portfolio</label>
+            <input type="text" data-bind="personal.portfolio" placeholder="yourname.com" dir="ltr" style="text-align:left">
+          </div>
+        </div>
+
+        <div class="field">
+          <label>الملخص المهني <span class="req">*</span></label>
+          <textarea data-bind="personal.summary" rows="5" placeholder="اكتب 3–4 أسطر تلخّص تخصصك، سنوات خبرتك، أبرز إنجاز رقمي، وما تقدمه للشركة…"></textarea>
+          <div class="hint">
+            <button class="btn btn-sm" id="btnGenSummary" style="margin-top:7px">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 3l1.9 4.6L18.5 9.5l-4.6 1.9L12 16l-1.9-4.6L5.5 9.5l4.6-1.9L12 3z" stroke-linejoin="round"/></svg>
+              توليد ملخص بالذكاء الاصطناعي
+            </button>
+          </div>
+        </div>
+
+        <div class="switch-row">
+          <span>إظهار الشعار المونوغرام (الأحرف الأولى)</span>
+          <label class="switch"><input type="checkbox" data-bind="settings.monogram" checked><i></i></label>
+        </div>
+        <div class="switch-row">
+          <span>إظهار سطر "تم الإنشاء بواسطة م/ علي باوكيع</span>
+          <label class="switch"><input type="checkbox" data-bind="settings.footer" checked><i></i></label>
+        </div>
+
+        <div style="display:flex;justify-content:flex-end;margin-top:18px">
+          <button class="btn btn-danger btn-sm" id="btnClear">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 6h18M8 6V4h8v2M19 6l-1 14H6L5 6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            بدء سيرة جديدة (مسح الكل)
+          </button>
+        </div>
+      </div>
+
+      <!-- EXPERIENCE -->
+      <div class="panel" data-panel="experience">
+        <div class="section-head">
+          <div>
+            <h2>الخبرة العملية</h2>
+            <p>ابدأ بالأحدث. اكتب كل إنجاز في سطر منفصل بصيغة: فعل + مهمة + نتيجة رقمية.</p>
+          </div>
+          <button class="btn btn-gold btn-sm" data-add="experience">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14" stroke-linecap="round"/></svg>
+            إضافة
+          </button>
+        </div>
+        <div id="list-experience"></div>
+      </div>
+
+      <!-- EDUCATION -->
+      <div class="panel" data-panel="education">
+        <div class="section-head">
+          <div>
+            <h2>التعليم</h2>
+            <p>اذكر الدرجة العلمية، التخصص، الجامعة وسنة التخرج. المعدل اختياري لكنه مفيد لحديثي التخرج.</p>
+          </div>
+          <button class="btn btn-gold btn-sm" data-add="education">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14" stroke-linecap="round"/></svg>
+            إضافة
+          </button>
+        </div>
+        <div id="list-education"></div>
+      </div>
+
+      <!-- SKILLS -->
+      <div class="panel" data-panel="skills">
+        <div class="section-head">
+          <div>
+            <h2>المهارات واللغات</h2>
+            <p>استخدم نفس مصطلحات الوصف الوظيفي. اخلط بين المهارات التقنية والشخصية.</p>
+          </div>
+        </div>
+
+        <div class="field">
+          <label>المهارات</label>
+          <div class="tag-input-wrap">
+            <input type="text" id="skillInput" placeholder="اكتب مهارة ثم اضغط Enter…">
+            <button class="btn btn-gold btn-sm" id="addSkill">إضافة</button>
+          </div>
+          <div class="tags" id="skillTags"></div>
+          <div class="hint">مثال: JavaScript، تحليل البيانات، إدارة المشاريع، التفاوض، Excel المتقدم.</div>
+        </div>
+
+        <div style="height:8px"></div>
+
+        <div class="section-head" style="margin-top:18px">
+          <div><h2 style="font-size:14px">اللغات</h2></div>
+          <button class="btn btn-sm" data-add="languages">+ لغة</button>
+        </div>
+        <div id="list-languages"></div>
+      </div>
+
+      <!-- EXTRAS -->
+      <div class="panel" data-panel="extras">
+        <div class="section-head">
+          <div>
+            <h2>إضافات مهنية</h2>
+            <p>المشاريع والشهادات تعزّز الملف، خصوصاً للمبرمجين والمهندسين وحديثي التخرج.</p>
+          </div>
+        </div>
+
+        <div class="section-head" style="margin-top:6px">
+          <div><h2 style="font-size:14px">المشاريع</h2></div>
+          <button class="btn btn-sm" data-add="projects">+ مشروع</button>
+        </div>
+        <div id="list-projects"></div>
+
+        <div class="section-head" style="margin-top:18px">
+          <div><h2 style="font-size:14px">الشهادات والدورات</h2></div>
+          <button class="btn btn-sm" data-add="certs">+ شهادة</button>
+        </div>
+        <div id="list-certs"></div>
+      </div>
+
+      <!-- ATS -->
+      <div class="panel" data-panel="ats">
+        <div class="section-head">
+          <div>
+            <h2>فحص التوافق مع ATS</h2>
+            <p>تحليل فوري لسيرتك مقابل معايير أنظمة تتبع المتقدمين.</p>
+          </div>
+          <button class="btn btn-sm" id="btnRescan">تحديث</button>
+        </div>
+
+        <div class="ats-hero">
+          <div class="gauge">
+            <svg width="104" height="104" viewBox="0 0 104 104">
+              <defs>
+                <linearGradient id="gaugeGrad" x1="0" y1="0" x2="1" y2="1">
+                  <stop offset="0%" stop-color="#F3DCA6"/>
+                  <stop offset="55%" stop-color="#E4C27E"/>
+                  <stop offset="100%" stop-color="#B8893C"/>
+                </linearGradient>
+              </defs>
+              <circle class="bg" cx="52" cy="52" r="45"/>
+              <circle class="fg" id="gaugeFg" cx="52" cy="52" r="45" stroke-dasharray="282.7" stroke-dashoffset="282.7"/>
+            </svg>
+            <div class="gauge-val"><div><b id="atsScore">0</b><small>من 100</small></div></div>
+          </div>
+          <div class="ats-hero-text">
+            <h3 id="atsVerdict">ابدأ بإدخال بياناتك</h3>
+            <p id="atsSub">سيظهر تقييمك هنا مباشرة أثناء الكتابة.</p>
+          </div>
+        </div>
+
+        <div class="check-list" id="atsChecks"></div>
+
+        <div style="height:18px"></div>
+        <div class="section-head" style="margin-bottom:8px">
+          <div><h2 style="font-size:14px">مطابقة الوصف الوظيفي</h2></div>
+        </div>
+        <div class="field">
+          <textarea id="jdInput" rows="5" placeholder="الصق نص الوصف الوظيفي هنا لاستخراج الكلمات المفتاحية ومقارنتها بسيرتك…"></textarea>
+        </div>
+        <div id="jdResult"></div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ---------- PREVIEW ---------- -->
+  <section class="preview-col">
+    <div class="preview-toolbar">
+      <div class="preview-title"><span class="live"></span> معاينة حيّة · A4</div>
+      <div style="display:flex;align-items:center;gap:10px">
+        <button class="score-pill" id="scorePill" title="فتح فحص ATS">
+          <span>ATS</span><b id="miniScore">—</b>
+        </button>
+        <div class="zoom-group">
+        <button id="zoomOut" title="تصغير">−</button>
+        <span class="zoom-val" id="zoomVal">100%</span>
+        <button id="zoomIn" title="تكبير">+</button>
+        <button id="zoomFit" title="ملاءمة" style="width:auto;padding:0 8px;font-size:11px">ملاءمة</button>
+        </div>
+      </div>
+    </div>
+    <div class="stage" id="stage">
+      <div class="paper-scaler" id="paperScaler">
+        <div class="paper" id="paper"></div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- ============ AI FAB ============ -->
+<button class="ai-fab" id="aiFab">
+  <svg class="spark" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9"><path d="M12 3l1.9 4.6L18.5 9.5l-4.6 1.9L12 16l-1.9-4.6L5.5 9.5l4.6-1.9L12 3z" stroke-linejoin="round"/><path d="M19 15l.9 2.1L22 18l-2.1.9L19 21l-.9-2.1L16 18l2.1-.9L19 15z" stroke-linejoin="round"/></svg>
+  المساعد الذكي
+</button>
+
+<!-- ============ AI MODAL ============ -->
+<div class="modal-back" id="aiModal">
+  <div class="modal">
+    <div class="modal-head">
+      <div class="mh-title">
+        <div class="ai-orb">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9"><path d="M12 3l1.9 4.6L18.5 9.5l-4.6 1.9L12 16l-1.9-4.6L5.5 9.5l4.6-1.9L12 3z" stroke-linejoin="round"/><path d="M19 15l.9 2.1L22 18l-2.1.9L19 21l-.9-2.1L16 18l2.1-.9L19 15z" stroke-linejoin="round"/></svg>
+        </div>
+        <div>
+          <h3>المساعد الذكي للسيرة الذاتية</h3>
+          <p>محرك تحليل لغوي يعمل داخل جهازك — بياناتك لا تُرسل لأي خادم</p>
+        </div>
+      </div>
+      <button class="modal-close" id="aiClose">✕</button>
+    </div>
+    <div class="modal-body">
+      <div class="ai-actions">
+        <button class="ai-act" data-ai="summary"><b>✦ كتابة ملخص مهني</b><span>ملخص مخصص حسب مسماك وخبراتك</span></button>
+        <button class="ai-act" data-ai="bullets"><b>⚡ تحسين نقاط الخبرة</b><span>صياغة قوية بأفعال ونتائج قابلة للقياس</span></button>
+        <button class="ai-act" data-ai="keywords"><b>◎ اقتراح كلمات مفتاحية</b><span>مصطلحات يبحث عنها الـ ATS لمجالك</span></button>
+        <button class="ai-act" data-ai="review"><b>☑ مراجعة شاملة</b><span>تقييم سريع ونصائح مرتبة بالأولوية</span></button>
+      </div>
+      <div class="ai-output" id="aiOutput"></div>
+      <div class="ai-foot">
+        <button class="btn btn-sm" id="aiCopy">نسخ</button>
+        <button class="btn btn-gold btn-sm" id="aiApply">تطبيق على السيرة</button>
+      </div>
+      <div class="ai-note">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 8h.01M11 12h1v4h1" stroke-linecap="round"/></svg>
+        <span>المساعد يعتمد على قواعد لغوية ومكتبة مصطلحات مهنية مدمجة، وقد يقترح صياغات تحتاج مراجعتك. أضف أرقامك الحقيقية دائماً — لا تختلق إنجازات.</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<input type="file" id="fileInput" accept="application/json" hidden>
+<div class="toast-wrap" id="toastWrap"></div>
+
+<script src="app.js"></script>
+</body>
+</html>
